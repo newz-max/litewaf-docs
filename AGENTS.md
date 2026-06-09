@@ -41,6 +41,22 @@ npm run docs:build
 - 页面路径优先使用稳定英文或 kebab-case，页面标题和正文可以使用中文。
 - 不写真实服务器地址、密钥、连接串或本机私有部署路径。
 
+## 现有文档路径速查
+
+- 文档站首页：`index.md`。
+- VitePress 配置和导航：`.vitepress/config.ts`。
+- 快速开始：`guide/quick-start.md`。
+- 日常使用和发布生命周期：`guide/usage.md`。
+- Debian 12 部署：`deploy/debian12.md`。
+- 架构说明：`reference/architecture.md`。
+- API 概览：`reference/api.md`。
+- 规则编写：`rules/authoring.md`。
+- 贡献指南：`community/contributing.md`。
+- 升级和回滚：`release/upgrade.md`。
+- 文档站维护说明：`README.md`。
+- 上游详细 Markdown 参考：`../codes/litewaf-api/doc/`，其中 `文档索引.md` 是公开文档索引。
+- 工作区内部规划和 OpenSpec：`../doc/`、`../openspec/`，不要直接当作用户首次部署或日常操作说明。
+
 ## Git 约定
 
 - 本仓库独立提交，commit message 默认使用中文。
