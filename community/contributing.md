@@ -9,8 +9,6 @@ LiteWaf 以轻量、开源、快速部署为项目方向。贡献代码、规则
 - `litewaf-gateway`：OpenResty WAF 网关。
 - `docs-site`：独立 VitePress 文档站。
 
-根工作区的 `openspec/` 和内部规划文档用于变更设计和交接，不是普通用户首次部署入口。
-
 ## 检查命令
 
 文档站常用检查：

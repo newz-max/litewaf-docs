@@ -1,19 +1,17 @@
 # LiteWaf Docs Site 协作指南
 
-本文件供 Claude 在 `D:\Project\web_safe\docs-site` 独立文档站仓库中协作时读取。规则与 `AGENTS.md` 保持一致。
+本文件供 Claude 在 LiteWaf 独立文档站仓库中协作时读取。规则与 `AGENTS.md` 保持一致。
 
 ## 全局偏好
 
 - Git commit message 默认使用中文。
 - 当用户询问 VitePress、Vue、npm 或其他库/CLI/API 用法时，使用 Context7 MCP 获取当前文档。
-- 不要把本仓库的文档站文件放入 `doc/` 或 `codes/litewaf-api/`。
 
 ## 项目定位
 
 本仓库是 LiteWaf 的独立 VitePress 公开文档站。
 
-- 仓库路径：`D:\Project\web_safe\docs-site`
-- 文档站源码：当前仓库根目录
+- 文档站源码：当前仓库
 - VitePress 配置：`.vitepress/config.ts`
 - 构建输出：`.vitepress/dist/`
 
@@ -43,7 +41,6 @@ npm run docs:build
 
 - 本站是可浏览公开文档入口，详细参考可链接到 `litewaf-api/doc/`。
 - 用户可见流程变更时，优先更新本站入口页，再同步权威详细 Markdown。
-- 规划和历史材料可以链接，但必须避免被读者误认为当前部署或日常操作指南。
 - 站点、规则、策略、IP 名单、访问控制、限流和防护模块配置变更必须发布后才会被 Gateway 执行。
 - 页面路径优先使用稳定英文或 kebab-case，中文用于标题和正文。
 
@@ -60,8 +57,7 @@ npm run docs:build
 - 贡献指南：`community/contributing.md`。
 - 升级和回滚：`release/upgrade.md`。
 - 文档站维护说明：`README.md`。
-- 上游详细 Markdown 参考：`../codes/litewaf-api/doc/`，其中 `文档索引.md` 是公开文档索引。
-- 工作区内部规划和 OpenSpec：`../doc/`、`../openspec/`，不要直接当作用户首次部署或日常操作说明。
+- 上游详细 Markdown 参考：`litewaf-api/doc/`，其中 `文档索引.md` 是公开文档索引。
 
 ## Git 约定
 
