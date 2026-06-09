@@ -41,21 +41,31 @@ npm run docs:build
 
 - 本站是可浏览公开文档入口，详细参考可链接到 `litewaf-api/doc/`。
 - 用户可见流程变更时，优先更新本站入口页，再同步权威详细 Markdown。
+- `docs-site/` 当前维护中文根路径和英文 `/en/` 路径；用户可见流程变更应同步更新中英文页面，若暂缓某一语言，必须在任务或评审说明中记录例外。
 - 站点、规则、策略、IP 名单、访问控制、限流和防护模块配置变更必须发布后才会被 Gateway 执行。
 - 页面路径优先使用稳定英文或 kebab-case，中文用于标题和正文。
 
 ## 现有文档路径速查
 
 - 文档站首页：`index.md`。
+- 英文文档站首页：`en/index.md`。
 - VitePress 配置和导航：`.vitepress/config.ts`。
 - 快速开始：`guide/quick-start.md`。
+- 英文快速开始：`en/guide/quick-start.md`。
 - 日常使用和发布生命周期：`guide/usage.md`。
+- 英文日常使用：`en/guide/usage.md`。
 - Debian 12 部署：`deploy/debian12.md`。
+- 英文 Debian 12 部署：`en/deploy/debian12.md`。
 - 架构说明：`reference/architecture.md`。
+- 英文架构说明：`en/reference/architecture.md`。
 - API 概览：`reference/api.md`。
+- 英文 API 概览：`en/reference/api.md`。
 - 规则编写：`rules/authoring.md`。
+- 英文规则编写：`en/rules/authoring.md`。
 - 贡献指南：`community/contributing.md`。
+- 英文贡献指南：`en/community/contributing.md`。
 - 升级和回滚：`release/upgrade.md`。
+- 英文升级和回滚：`en/release/upgrade.md`。
 - 文档站维护说明：`README.md`。
 - 上游详细 Markdown 参考：`litewaf-api/doc/`，其中 `文档索引.md` 是公开文档索引。
 

@@ -23,5 +23,6 @@ npm run docs:preview
 ## 维护规则
 
 - 用户可见流程变更时，先更新本 VitePress 入口，再同步仍然权威的详细 Markdown。
+- 本站维护中文根路径和英文 `/en/` 路径；用户可见流程变更应同步更新中英文页面，若暂缓某一语言，必须在任务或评审说明中记录例外。
 - 站点、规则、策略、IP 名单、访问控制、限流和防护模块变更必须发布后才会被 Gateway 执行，这条边界应保留在 operator-facing 页面中。
 - 不提交 `.vitepress/dist/`、`.vitepress/cache/` 或 `node_modules/`。
