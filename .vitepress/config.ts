@@ -4,6 +4,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'LiteWaf',
   description: '开源、轻便、快速部署的 OpenResty WAF 文档中心',
+  base: '/litewaf-docs/',
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {

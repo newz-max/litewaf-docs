@@ -32,6 +32,13 @@ npm run docs:preview
 npm run docs:build
 ```
 
+## Pages 发布
+
+- GitHub Pages 使用 `.github/workflows/deploy-pages.yml`，push `master` 后自动发布。
+- GitHub Pages 预期地址：`https://newz-max.github.io/litewaf-docs/`。
+- VitePress `base` 必须保持 `/litewaf-docs/`，除非仓库名或发布路径变化。
+- Gitee Pages 官方当前标注功能已下线；如账号页面仍可开启 Pages，使用 `gh-pages` 分支中的静态产物发布。
+
 ## 维护约定
 
 - 本站是可浏览公开文档入口，详细参考可链接到 `litewaf-api/doc/`。
