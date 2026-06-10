@@ -12,18 +12,17 @@
 
 进入后台“访问控制”。选择目标类型、匹配方式、方法范围和动作。
 
-## 推荐配置
+## 如何配置
 
-| 场景 | 目标 | 匹配 | 动作 |
-| --- | --- | --- | --- |
-| 后台路径保护 | path `/admin` | `prefix` | `block` 或先 `log-only` |
-| 单接口保护 | path `/internal/status` | `exact` | `block` |
-| Header 校验 | header `X-Internal-Token` | `exact` 或 `contains` | `allow` / `block` |
-| Host 限制 | host `example.com` | `exact` 或 `suffix` | `allow` / `block` |
+1. 在“访问控制”页面选择目标类型：路径、Header 或 Host。
+2. 目标为路径时，填写路径并在“匹配方式”选择“前缀”或“精确”。
+3. 目标为 Header 时，填写 Header 名称和值，并选择“精确”或“包含”。
+4. 目标为 Host 时，填写域名，并选择“精确”或“后缀”。
+5. 选择 HTTP 方法和动作：允许、观察或阻断。方法留空表示全部方法。
 
 ## 匹配范围
 
-路径匹配支持 `exact` 和 `prefix`。`exact` 要求路径完全一致。`prefix` 按路径段边界匹配，`/admin` 匹配 `/admin/users`，不匹配 `/admin2`。
+路径匹配支持“精确”（底层值 `exact`）和“前缀”（底层值 `prefix`）。“精确”要求路径完全一致。“前缀”按路径段边界匹配，`/admin` 匹配 `/admin/users`，不匹配 `/admin2`。
 
 Header 匹配读取指定 Header 名称，支持精确匹配或包含匹配。Host 匹配会忽略端口，支持精确域名或后缀域名。
 
@@ -48,4 +47,3 @@ Header 匹配读取指定 Header 名称，支持精确匹配或包含匹配。Ho
 - 宽泛允许规则可能绕过后续模块，范围要尽量小。
 - Header 值可能包含敏感信息，日志只保留有限摘要。
 - 路径前缀不要用 `/` 直接阻断全站，除非已确认影响面。
-

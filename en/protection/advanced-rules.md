@@ -13,14 +13,13 @@ Advanced Rules cover rule package import, signature status, source tracking, rul
 
 Open "Advanced Rule Ecosystem" in the dashboard. Use preview, import, test, and export actions to manage rule packages.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Recommendation |
-| --- | --- |
-| First import | Preview first, then check signature, source, rule count, and invalid entries |
-| Blocking rollout | Test first, then publish with observe mode or a low-risk policy |
-| Community maintenance | Keep source, category, attack type, group, and description metadata |
-| Rule export | Export only sanitized public rule metadata and expressions |
+1. In Advanced Rule Ecosystem, paste or select a rule package.
+2. Run preview first, then check signature status, source, rule count, added items, changed items, skipped items, and invalid items.
+3. Import the package only after review, so rules enter control-plane rule data.
+4. Test blocking rules and confirm target, expression, action, score, module, and category.
+5. Bind policies and publish; the Gateway executes imported rules only after publishing.
 
 ## Match Scope
 
@@ -48,4 +47,3 @@ Query by the rule's module, such as `attack-protection` or advanced expression e
 - Unsigned packages can be imported locally, but need stricter review before publishing.
 - Do not publish untested blocking rules to the full site.
 - Remote catalog outages do not affect already published rules.
-

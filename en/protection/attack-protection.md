@@ -12,14 +12,12 @@ Attack Protection groups managed SQL injection, XSS, RCE, and path traversal rul
 
 Open "Attack Protection" in the dashboard. Review managed rules by attack type or rule group, then adjust enablement, action, and priority.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Recommendation |
-| --- | --- |
-| SQL injection | Start in observe mode, confirm business query parameters, then block |
-| XSS | Observe comment, search, and rich-text entry points before blocking |
-| RCE | Block high-risk endpoints and keep a publish rollback point |
-| Path traversal | Enable for static resources, downloads, and file-read endpoints |
+1. In Attack Protection, choose a managed rule group such as SQL injection, XSS, RCE, or path traversal.
+2. Review group status, action, and priority. Start with observe or a low-risk action, then block after confirming hits.
+3. If a rule depends on body inspection, enable body inspection in the policy and constrain Content-Type, path prefixes, and size limits.
+4. Save the change, then use publish preview to confirm attack groups, actions, and risk prompts.
 
 ## Match Scope
 
@@ -44,4 +42,3 @@ Filter by `module=attack-protection`. Check `attack_type`, `group_name`, `rule_i
 - Do not use Attack Protection as access control; use Access Control for path allow/block rules.
 - Body inspection adds processing cost, so enable it only on needed paths.
 - Logs keep bounded summaries and do not store full sensitive payloads.
-

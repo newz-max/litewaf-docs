@@ -12,14 +12,13 @@ IP Access Lists allow or block requests by source IP or CIDR. This is a standalo
 
 Open "IP Access Lists" in the dashboard. Choose allow or block, IP or CIDR, and global or application scope.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Type | Scope | Recommendation |
-| --- | --- | --- | --- |
-| Office allow | allow | Application | Use exact IP or the smallest CIDR |
-| Attack source block | block | Application | Prefer exact IP |
-| Baseline deny list | block | Global | Include only clearly malicious networks |
-| Emergency recovery | allow | Application | Override false positives without expanding globally |
+1. In IP Access Lists, choose the scope: global or a specific protected application.
+2. Choose the action: allow or block.
+3. Choose the address type: Exact IP or CIDR. Exact IP is one source address; CIDR is a network range.
+4. Enter IP, CIDR prefix length, name, and enabled state.
+5. Save the entry, then use publish preview to confirm allow, block, Exact IP, CIDR, global, and application-scoped counts.
 
 ## Match Scope
 
@@ -46,4 +45,3 @@ Check source IP, disposition, and rejection reason in blocked/rejected records a
 - Global CIDR blocks have a wide blast radius; prefer application scope.
 - Incorrect real IP configuration can allow or block the wrong clients.
 - Do not express path rules in IP lists; use Access Control for path, header, and host rules.
-

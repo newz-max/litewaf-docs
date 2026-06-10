@@ -12,17 +12,17 @@ Dynamic Protection includes dynamic tokens, page mutation, and a local waiting r
 
 Open "Dynamic Protection / Waiting Room" in the dashboard. Choose rule type, path scope, TTL, failure action, or waiting-room capacity.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Category | Path | Match | Recommendation |
-| --- | --- | --- | --- | --- |
-| Admin token | `dynamic-token` | `/admin` | `prefix` | Cookie mode, TTL around 300 seconds |
-| Campaign mutation | `page-mutation` | `/campaign` | `prefix` | Limit max HTML buffer size |
-| Sale entry | `waiting-room` | `/sale` | `prefix` | Narrow path, short TTL, observe first |
+1. In Dynamic Protection / Waiting Room, choose the rule type: dynamic token, page mutation, or waiting room.
+2. Enter the path and choose "Prefix" or "Exact" in the match-mode selector.
+3. For dynamic token rules, configure token TTL, token placement, and failure action.
+4. For page mutation rules, configure injection marker and max buffer size.
+5. For waiting-room rules, configure capacity, admission TTL, retry interval, and overflow action.
 
 ## Match Scope
 
-Dynamic Protection supports `exact` and `prefix` path matching. An empty method list means all methods. `prefix` uses path segment boundaries, so `/admin` does not match `/admin2`.
+Dynamic Protection supports "Exact" (published value `exact`) and "Prefix" (published value `prefix`). An empty method list means all methods. "Prefix" uses path segment boundaries, so `/admin` does not match `/admin2`.
 
 Dynamic tokens support cookie, header, and query placement. Page mutation only handles responses whose `Content-Type` contains `text/html` and whose size is under the limit. Waiting-room state is local to the Gateway node, so multi-Gateway deployments do not provide exact global fairness.
 
@@ -46,4 +46,3 @@ Filter by `module=dynamic-protection`. Common results include `token-issued`, `t
 - Do not enable blocking dynamic tokens on `/` for the full site without compatibility checks.
 - Header or query tokens require clients to store and return the token.
 - The first waiting-room version uses node-local capacity and is not suitable for strict global fairness requirements.
-

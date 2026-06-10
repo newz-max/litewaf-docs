@@ -12,17 +12,17 @@ Upload Protection limits upload paths, dangerous extensions, and upload size. It
 
 Open "Upload Protection" in the dashboard. Configure path, match mode, methods, extensions, max bytes, and action.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Path | Match | Methods | Recommendation |
-| --- | --- | --- | --- | --- |
-| General upload | `/upload` | `prefix` | `POST` | Block dangerous extensions |
-| Avatar upload | `/upload/avatar` | `prefix` | `POST`, `PUT` | Limit size and extensions |
-| File import | `/import` | `exact` | `POST` | Observe first, then tighten by business format |
+1. In Upload Protection, select the protected application and enabled state.
+2. Enter the upload path and choose "Prefix" or "Exact" in the match-mode selector.
+3. Select HTTP methods, usually the actual upload methods such as `POST` or `PUT`.
+4. Enter dangerous extensions and max bytes; keep fields empty or default when they should not limit traffic.
+5. Choose observe or block, save, and confirm the rule in publish preview.
 
 ## Match Scope
 
-Upload Protection supports `exact` and `prefix` path matching. `exact` matches only the full path. `prefix` matches by path segment boundary. An empty method list means all methods, but upload entry points should usually be limited to `POST` or `PUT`.
+Upload Protection supports "Exact" (published value `exact`) and "Prefix" (published value `prefix`). "Exact" matches only the full path. "Prefix" matches by path segment boundary. An empty method list means all methods, but upload entry points should usually be limited to `POST` or `PUT`.
 
 Extensions are evaluated from uploaded filename metadata. Max size is evaluated from request or upload metadata. When size metadata is not stable, observe logs before tightening rules.
 
@@ -45,4 +45,3 @@ Filter by `module=upload-protection`. Check `rule_name`, `target`, `threshold`, 
 - Do not set very low size limits on full-site paths.
 - Extension checks do not replace backend content validation and storage isolation.
 - Observe business filenames and MIME distribution before blocking.
-

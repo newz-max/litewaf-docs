@@ -13,23 +13,22 @@ CC Protection limits high-frequency access, login brute force, API abuse, 404 sc
 
 Open "CC Protection" in the dashboard. Read-only users can view rules; administrators can create, edit, delete, enable, and disable rules.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Path | Match | Method | Counter | Threshold and action |
-| --- | --- | --- | --- | --- | --- |
-| Login brute force | `/api/login` | `exact` | `POST` | `client_ip` | 10 requests / 60 seconds, `ban` for 600 seconds |
-| API rate limit | `/api/` | `prefix` | All | `client_ip_path` | 120 requests / 60 seconds, `rate-limit` |
-| Site baseline | `/` | `prefix` | All | `client_ip` | 300 requests / 60 seconds, `rate-limit` |
-| 404 scan | `/api/*` | `glob` | All | `not_found_frequency` | 20 requests / 60 seconds, `rate-limit` |
-| Session login limit | `/api/login` | `exact` | `POST` | `session` | 8 requests / 60 seconds, `block` |
+1. Select the protected application; keep global scope only when the rule should apply globally.
+2. Enter the URI path, such as `/api/login`, `/api/`, or `/api/*`.
+3. In the match-mode selector, choose "Prefix", "Exact", or "Glob". "Glob" appears only on the CC Protection page.
+4. Select HTTP methods to count; leaving methods empty means all methods.
+5. Choose the counter: `client_ip`, `client_ip_path`, `global`, `session`, `device`, `not_found_frequency`, or `attack_frequency`.
+6. Set window, threshold, action, and ban duration. Validate with observe mode or loose thresholds before blocking or banning.
 
 ## Match Scope
 
-`exact` requires the request URI path to equal the configured path. `/api/login` matches only `/api/login`, not `/api/login/`; the Gateway evaluates the path portion, not the query string.
+"Exact" (published value `exact`) requires the request URI path to equal the configured path. `/api/login` matches only `/api/login`, not `/api/login/`; the Gateway evaluates the path portion, not the query string.
 
-`prefix` matches by path segment boundary. `/admin` matches `/admin` and `/admin/users`, but not `/admin2`. Configuring `/api/` covers `/api`, `/api/`, and `/api/users`, which is suitable for multi-level API prefixes.
+"Prefix" (published value `prefix`) matches by path segment boundary. `/admin` matches `/admin` and `/admin/users`, but not `/admin2`. Configuring `/api/` covers `/api`, `/api/`, and `/api/users`, which is suitable for multi-level API prefixes.
 
-`glob` is supported only by CC Protection and is a restricted path wildcard. `*` matches any characters within a single path segment and does not cross `/`; `?` matches one non-`/` character. Regular expressions, character classes, and `**` are not supported. For example, `/api/*` matches `/api/login`, but not `/api/v1/login`. Use `prefix=/api/` for multi-level paths.
+"Glob" (published value `glob`) is supported only by CC Protection and is a restricted path wildcard. `*` matches any characters within a single path segment and does not cross `/`; `?` matches one non-`/` character. Regular expressions, character classes, and `**` are not supported. For example, `/api/*` matches `/api/login`, but not `/api/v1/login`. For multi-level paths, choose "Prefix" in the Dashboard and enter `/api/`.
 
 An empty method list means all HTTP methods. Counters include `client_ip`, `client_ip_path`, `global`, `not_found_frequency`, `attack_frequency`, `session`, and `device`. `session` requires a Cookie or Header name. `device` derives a coarse key from request signals and does not store raw fingerprints.
 
@@ -51,6 +50,5 @@ Filter attack logs by `module=cc-protection`. Check `rule_name`, `counter`, `thr
 
 - Do not start with a very low threshold on `/` and immediate blocking.
 - Login bans can affect legitimate users sharing the same IP, so observe first.
-- `glob` fits single-level paths; use `prefix` for multi-level APIs.
+- "Glob" fits single-level paths; use "Prefix" for multi-level APIs.
 - Verify trusted proxy and real client IP settings before IP-based counters.
-

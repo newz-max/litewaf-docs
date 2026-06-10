@@ -12,18 +12,17 @@ Access Control allows, observes, or blocks requests by path, header, or host. So
 
 Open "Access Control" in the dashboard. Choose target type, match mode, method scope, and action.
 
-## Recommended Settings
+## How to Configure
 
-| Scenario | Target | Match | Action |
-| --- | --- | --- | --- |
-| Admin path | path `/admin` | `prefix` | `block` or start with `log-only` |
-| Single internal endpoint | path `/internal/status` | `exact` | `block` |
-| Header check | header `X-Internal-Token` | `exact` or `contains` | `allow` / `block` |
-| Host limit | host `example.com` | `exact` or `suffix` | `allow` / `block` |
+1. In Access Control, choose the target type: path, header, or host.
+2. For path targets, enter the path and choose "Prefix" or "Exact" in the match-mode selector.
+3. For header targets, enter the header name and value, then choose "Exact" or "Contains".
+4. For host targets, enter the domain, then choose "Exact" or "Suffix".
+5. Choose HTTP methods and the action: allow, observe, or block. Leaving methods empty means all methods.
 
 ## Match Scope
 
-Path matching supports `exact` and `prefix`. `exact` requires the path to match exactly. `prefix` matches by path segment boundary, so `/admin` matches `/admin/users` but not `/admin2`.
+Path matching supports "Exact" (published value `exact`) and "Prefix" (published value `prefix`). "Exact" requires the path to match exactly. "Prefix" matches by path segment boundary, so `/admin` matches `/admin/users` but not `/admin2`.
 
 Header matching reads the configured header name and supports exact or contains matching. Host matching ignores the port and supports exact domain or suffix domain matching.
 
@@ -48,4 +47,3 @@ Filter by `module=access-control`. Check `target`, `rule_name`, `action`, `dispo
 - Broad allow rules can bypass later modules, so keep scope narrow.
 - Header values can be sensitive; logs store only bounded summaries.
 - Do not block the full site with `/` unless the impact is confirmed.
-

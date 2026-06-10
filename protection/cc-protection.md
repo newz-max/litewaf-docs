@@ -13,23 +13,22 @@ CC 防护用于限制高频访问、登录爆破、API 调用滥用、404 扫描
 
 进入后台“CC 防护”。只读角色只能查看；管理员可以新增、编辑、删除和启停规则。
 
-## 推荐配置
+## 如何配置
 
-| 场景 | 路径 | 匹配 | 方法 | 统计对象 | 阈值和动作 |
-| --- | --- | --- | --- | --- | --- |
-| 登录防爆破 | `/api/login` | `exact` | `POST` | `client_ip` | 10 次 / 60 秒，`ban` 600 秒 |
-| API 限流 | `/api/` | `prefix` | 全部 | `client_ip_path` | 120 次 / 60 秒，`rate-limit` |
-| 全站基础保护 | `/` | `prefix` | 全部 | `client_ip` | 300 次 / 60 秒，`rate-limit` |
-| 404 扫描 | `/api/*` | `glob` | 全部 | `not_found_frequency` | 20 次 / 60 秒，`rate-limit` |
-| 会话级登录限制 | `/api/login` | `exact` | `POST` | `session` | 8 次 / 60 秒，`block` |
+1. 在“防护应用”中选择要生效的应用；需要全局规则时保持全局范围。
+2. 在“路径”填写要保护的 URI 路径，例如 `/api/login`、`/api/` 或 `/api/*`。
+3. 在“匹配方式”选择 Dashboard 里的“前缀”“精确”或“Glob”。“Glob”只在 CC 防护页面出现。
+4. 在“方法”选择需要统计的 HTTP 方法；留空表示全部方法。
+5. 在“统计对象”选择 `client_ip`、`client_ip_path`、`global`、`session`、`device`、`not_found_frequency` 或 `attack_frequency`。
+6. 填写窗口、阈值、动作和封禁时间。先用观察或较宽松阈值验证，再切换阻断或封禁。
 
 ## 匹配范围
 
-`exact` 要求请求 URI 与配置路径完全相同。`/api/login` 只匹配 `/api/login`，不匹配 `/api/login/` 或 `/api/login?x=1` 中的查询部分；Gateway 使用路径部分判断。
+“精确”（底层值 `exact`）要求请求 URI 与配置路径完全相同。`/api/login` 只匹配 `/api/login`，不匹配 `/api/login/`；Gateway 使用路径部分判断，不使用查询字符串参与路径匹配。
 
-`prefix` 按路径段边界匹配。`/admin` 匹配 `/admin` 和 `/admin/users`，不匹配 `/admin2`。配置 `/api/` 时会覆盖 `/api`、`/api/` 和 `/api/users`，适合多级 API 前缀。
+“前缀”（底层值 `prefix`）按路径段边界匹配。`/admin` 匹配 `/admin` 和 `/admin/users`，不匹配 `/admin2`。配置 `/api/` 时会覆盖 `/api`、`/api/` 和 `/api/users`，适合多级 API 前缀。
 
-`glob` 仅 CC 防护支持，用于受限路径通配。`*` 匹配单个路径段内任意字符，不跨 `/`；`?` 匹配单个非 `/` 字符；不支持正则、字符集或 `**`。例如 `/api/*` 匹配 `/api/login`，不匹配 `/api/v1/login`。需要覆盖多级路径时使用 `prefix=/api/`。
+“Glob”（底层值 `glob`）仅 CC 防护支持，用于受限路径通配。`*` 匹配单个路径段内任意字符，不跨 `/`；`?` 匹配单个非 `/` 字符；不支持正则、字符集或 `**`。例如 `/api/*` 匹配 `/api/login`，不匹配 `/api/v1/login`。需要覆盖多级路径时，在 Dashboard 选择“前缀”并填写 `/api/`。
 
 方法为空表示全部 HTTP 方法。统计对象可选 `client_ip`、`client_ip_path`、`global`、`not_found_frequency`、`attack_frequency`、`session`、`device`。`session` 需要配置 Cookie 或 Header 名称，`device` 使用粗粒度请求信号派生计数键，不记录原始指纹。
 
@@ -51,6 +50,5 @@ CC 防护用于限制高频访问、登录爆破、API 调用滥用、404 扫描
 
 - 不要一开始对 `/` 设置过低阈值并直接阻断。
 - 登录封禁规则会影响同 IP 下的合法用户，建议先观察。
-- `glob` 适合单层路径，跨层 API 使用 `prefix` 更清晰。
+- “Glob”适合单层路径，跨层 API 使用“前缀”更清晰。
 - 需要区分客户端 IP 时，先确认可信代理和真实 IP 配置正确。
-

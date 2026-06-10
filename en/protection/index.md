@@ -25,7 +25,7 @@ LiteWaf protection modules organize common WAF operations for dashboard users. T
 
 ## Match Scope
 
-CC Protection supports `exact`, `prefix`, and `glob` path matching. Access Control, Upload Protection, Bot Verification, and Dynamic Protection primarily use `exact` and `prefix`. Attack Protection and Advanced Rules execute by rule target fields. IP Access Lists execute by source IP or CIDR.
+CC Protection shows "Prefix", "Exact", and "Glob" in the match-mode selector. Access Control, Upload Protection, Bot Verification, and Dynamic Protection primarily use "Prefix" and "Exact". The values `prefix`, `exact`, and `glob` are mentioned only to explain the published configuration. Attack Protection and Advanced Rules execute by rule target fields. IP Access Lists execute by source IP or CIDR.
 
 ## Publish Boundary
 
@@ -37,4 +37,3 @@ Saving, previewing, testing, importing, syncing, or exporting in module pages do
 - Attack logs: filter events by `module`.
 - Blocked/rejected records: trace denied requests back to module reasons.
 - Publish records: confirm the active version, publish summary, and risk prompts.
-
