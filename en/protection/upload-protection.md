@@ -1,0 +1,48 @@
+# Upload Protection
+
+Upload Protection limits upload paths, dangerous extensions, and upload size. It records upload metadata and bounded summaries, not file contents.
+
+## Use Cases
+
+- Block dangerous extensions such as `.php`, `.jsp`, and `.exe`.
+- Limit avatar, attachment, and import file size.
+- Observe high-risk upload entry points before blocking.
+
+## Dashboard Entry
+
+Open "Upload Protection" in the dashboard. Configure path, match mode, methods, extensions, max bytes, and action.
+
+## Recommended Settings
+
+| Scenario | Path | Match | Methods | Recommendation |
+| --- | --- | --- | --- | --- |
+| General upload | `/upload` | `prefix` | `POST` | Block dangerous extensions |
+| Avatar upload | `/upload/avatar` | `prefix` | `POST`, `PUT` | Limit size and extensions |
+| File import | `/import` | `exact` | `POST` | Observe first, then tighten by business format |
+
+## Match Scope
+
+Upload Protection supports `exact` and `prefix` path matching. `exact` matches only the full path. `prefix` matches by path segment boundary. An empty method list means all methods, but upload entry points should usually be limited to `POST` or `PUT`.
+
+Extensions are evaluated from uploaded filename metadata. Max size is evaluated from request or upload metadata. When size metadata is not stable, observe logs before tightening rules.
+
+## Publish Activation
+
+Saving Upload Protection rules requires a publish. The Gateway evaluates Upload Protection after CC Protection and before Bot and Dynamic Protection.
+
+## Validation
+
+1. Publish observe mode and upload allowed and dangerous-extension samples.
+2. Confirm `module=upload-protection` appears in attack logs.
+3. Switch to blocking, publish, and confirm dangerous extensions or oversized uploads are rejected.
+
+## Log Fields
+
+Filter by `module=upload-protection`. Check `rule_name`, `target`, `threshold`, `upload_metadata`, `action`, and `disposition`.
+
+## False-Positive Risk
+
+- Do not set very low size limits on full-site paths.
+- Extension checks do not replace backend content validation and storage isolation.
+- Observe business filenames and MIME distribution before blocking.
+

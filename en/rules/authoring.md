@@ -20,6 +20,8 @@ LiteWaf rules describe request detection conditions and handling behavior. Rules
 - Maintain generic rules separately from business-specific rules.
 - Use publish preview before publishing to confirm the rule enters the target site policy.
 
+For dashboard module configuration, start with [Protection Modules](../protection/). CC Protection, Attack Protection, Access Control, Upload Protection, Bot Verification, Dynamic Protection, and Advanced Rules do not share exactly the same match scope.
+
 ## Unsupported Boundaries
 
 At this stage, LiteWaf does not execute third-party remote code, does not dynamically run arbitrary Lua plugins as community rules, and does not perform remote signature verification in the Gateway request hot path.

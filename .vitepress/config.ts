@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 const zhNav = [
   { text: '快速开始', link: '/guide/quick-start' },
   { text: '使用', link: '/guide/usage' },
+  { text: '防护模块', link: '/protection/' },
   { text: '部署', link: '/deploy/debian12' },
   { text: '参考', link: '/reference/architecture' },
   { text: '规则', link: '/rules/authoring' },
@@ -12,6 +13,7 @@ const zhNav = [
 const enNav = [
   { text: 'Quick Start', link: '/en/guide/quick-start' },
   { text: 'Usage', link: '/en/guide/usage' },
+  { text: 'Protection', link: '/en/protection/' },
   { text: 'Deploy', link: '/en/deploy/debian12' },
   { text: 'Reference', link: '/en/reference/architecture' },
   { text: 'Rules', link: '/en/rules/authoring' },
@@ -32,6 +34,20 @@ const zhSidebar = [
     items: [
       { text: 'Debian 12 部署', link: '/deploy/debian12' },
       { text: '升级和回滚', link: '/release/upgrade' }
+    ]
+  },
+  {
+    text: '防护模块',
+    items: [
+      { text: '模块总览', link: '/protection/' },
+      { text: 'CC 防护', link: '/protection/cc-protection' },
+      { text: '攻击防护', link: '/protection/attack-protection' },
+      { text: 'IP 黑白名单', link: '/protection/ip-access-list' },
+      { text: '访问控制', link: '/protection/access-control' },
+      { text: '上传防护', link: '/protection/upload-protection' },
+      { text: 'Bot / 人机验证', link: '/protection/bot-protection' },
+      { text: '动态防护 / 等候室', link: '/protection/dynamic-protection' },
+      { text: '高级规则生态', link: '/protection/advanced-rules' }
     ]
   },
   {
@@ -64,6 +80,20 @@ const enSidebar = [
     items: [
       { text: 'Debian 12 Deployment', link: '/en/deploy/debian12' },
       { text: 'Upgrade and Rollback', link: '/en/release/upgrade' }
+    ]
+  },
+  {
+    text: 'Protection Modules',
+    items: [
+      { text: 'Overview', link: '/en/protection/' },
+      { text: 'CC Protection', link: '/en/protection/cc-protection' },
+      { text: 'Attack Protection', link: '/en/protection/attack-protection' },
+      { text: 'IP Access Lists', link: '/en/protection/ip-access-list' },
+      { text: 'Access Control', link: '/en/protection/access-control' },
+      { text: 'Upload Protection', link: '/en/protection/upload-protection' },
+      { text: 'Bot Verification', link: '/en/protection/bot-protection' },
+      { text: 'Dynamic Protection', link: '/en/protection/dynamic-protection' },
+      { text: 'Advanced Rules', link: '/en/protection/advanced-rules' }
     ]
   },
   {

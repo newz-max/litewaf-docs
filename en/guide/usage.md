@@ -21,6 +21,8 @@ The following changes require publishing before they reach the Gateway:
 
 If the Dashboard saves successfully but gateway behavior does not change, check publish records, the active version, and Gateway logs first.
 
+For module-specific configuration, match scope, and validation guidance, see [Protection Modules](../protection/).
+
 ## Validation
 
 | Goal | Suggested check |
