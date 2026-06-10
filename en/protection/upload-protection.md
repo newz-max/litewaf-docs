@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Upload Protection
 
 Upload Protection limits upload paths, dangerous extensions, and upload size. It records upload metadata and bounded summaries, not file contents.

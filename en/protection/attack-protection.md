@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Attack Protection
 
 Attack Protection groups managed SQL injection, XSS, RCE, and path traversal rules. It manages managed attack rule enablement, actions, and priority. It does not include access control, upload protection, Bot verification, or Dynamic Protection capabilities.

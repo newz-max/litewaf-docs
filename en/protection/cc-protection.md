@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # CC Protection
 
 CC Protection limits high-frequency access, login brute force, API abuse, 404 scans, and attack-hit frequency. Rules execute as `module=cc-protection` and `category=rate-limit`.
@@ -24,11 +28,17 @@ Open "CC Protection" in the dashboard. Read-only users can view rules; administr
 
 ## Match Scope
 
-"Exact" (published value `exact`) requires the request URI path to equal the configured path. `/api/login` matches only `/api/login`, not `/api/login/`; the Gateway evaluates the path portion, not the query string.
+### Exact
 
-"Prefix" (published value `prefix`) matches by path segment boundary. `/admin` matches `/admin` and `/admin/users`, but not `/admin2`. Configuring `/api/` covers `/api`, `/api/`, and `/api/users`, which is suitable for multi-level API prefixes.
+Published value: `exact`. The request URI path must equal the configured path. `/api/login` matches only `/api/login`, not `/api/login/`; the Gateway evaluates the path portion, not the query string.
 
-"Glob" (published value `glob`) is supported only by CC Protection and is a restricted path wildcard. `*` matches any characters within a single path segment and does not cross `/`; `?` matches one non-`/` character. Regular expressions, character classes, and `**` are not supported. For example, `/api/*` matches `/api/login`, but not `/api/v1/login`. For multi-level paths, choose "Prefix" in the Dashboard and enter `/api/`.
+### Prefix
+
+Published value: `prefix`. Matches by path segment boundary. `/admin` matches `/admin` and `/admin/users`, but not `/admin2`. Configuring `/api/` covers `/api`, `/api/`, and `/api/users`, which is suitable for multi-level API prefixes.
+
+### Glob
+
+Published value: `glob`. Supported only by CC Protection as a restricted path wildcard. `*` matches any characters within a single path segment and does not cross `/`; `?` matches one non-`/` character. Regular expressions, character classes, and `**` are not supported. For example, `/api/*` matches `/api/login`, but not `/api/v1/login`. For multi-level paths, choose "Prefix" in the Dashboard and enter `/api/`.
 
 An empty method list means all HTTP methods. Counters include `client_ip`, `client_ip_path`, `global`, `not_found_frequency`, `attack_frequency`, `session`, and `device`. `session` requires a Cookie or Header name. `device` derives a coarse key from request signals and does not store raw fingerprints.
 

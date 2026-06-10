@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Bot Verification
 
 Bot Verification adds local JS challenge, captcha, behavior scoring, and device-signal checks before sensitive paths. The Gateway does not call third-party captcha services in the request hot path.

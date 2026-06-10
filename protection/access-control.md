@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # 访问控制
 
 访问控制用于按路径、Header 或 Host 对请求做允许、观察或阻断。来源 IP/CIDR 请使用独立的 IP 黑白名单模块。

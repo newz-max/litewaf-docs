@@ -1,0 +1,98 @@
+.protection-doc .vp-doc > h1 + p {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.protection-doc .vp-doc > h2 {
+  margin-top: 32px;
+  padding: 12px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--vp-c-bg-soft), var(--vp-c-bg));
+  letter-spacing: 0;
+}
+
+.protection-doc .vp-doc > h2 + p,
+.protection-doc .vp-doc > h2 + ul,
+.protection-doc .vp-doc > h2 + ol,
+.protection-doc .vp-doc > h2 + table {
+  margin-top: 12px;
+}
+
+.protection-doc .vp-doc > p,
+.protection-doc .vp-doc > ul,
+.protection-doc .vp-doc > ol {
+  padding: 14px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.protection-doc .vp-doc > ul,
+.protection-doc .vp-doc > ol {
+  padding-left: 34px;
+}
+
+.protection-doc .vp-doc > table {
+  display: table;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--vp-c-divider);
+}
+
+.protection-doc .vp-doc > table th {
+  background: var(--vp-c-bg-soft);
+}
+
+.protection-doc .vp-doc > table td,
+.protection-doc .vp-doc > table th {
+  padding: 12px 14px;
+}
+
+.protection-doc .vp-doc > h2 + p + p,
+.protection-doc .vp-doc > h2 + ul + p,
+.protection-doc .vp-doc > h2 + ol + p {
+  margin-top: 10px;
+}
+
+.protection-doc .vp-doc > h3 {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  padding: 6px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.protection-doc .vp-doc > h3 + p {
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .protection-doc .vp-doc > h1 + p,
+  .protection-doc .vp-doc > h2,
+  .protection-doc .vp-doc > p,
+  .protection-doc .vp-doc > ul,
+  .protection-doc .vp-doc > ol {
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+
+  .protection-doc .vp-doc > ul,
+  .protection-doc .vp-doc > ol {
+    padding-left: 30px;
+  }
+}

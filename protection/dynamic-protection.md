@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # 动态防护 / 等候室
 
 动态防护包含动态令牌、页面动态化和本地等候室。所有判断都基于发布后的本地配置和 Gateway shared dict，不在请求热路径访问控制面数据库。

@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Access Control
 
 Access Control allows, observes, or blocks requests by path, header, or host. Source IP and CIDR rules belong in the standalone IP Access Lists module.

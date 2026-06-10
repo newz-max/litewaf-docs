@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Dynamic Protection
 
 Dynamic Protection includes dynamic tokens, page mutation, and a local waiting room. All decisions use published local configuration and Gateway shared dictionaries, not control-plane database calls in the request hot path.

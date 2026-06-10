@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Advanced Rules
 
 Advanced Rules cover rule package import, signature status, source tracking, rule testing, and community contribution flow. The Gateway reads only published executable rules and does not pull remote catalogs or verify signatures in the request hot path.

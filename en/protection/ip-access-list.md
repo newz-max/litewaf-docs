@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # IP Access Lists
 
 IP Access Lists allow or block requests by source IP or CIDR. This is a standalone module and should not be mixed with path, header, or host access control.

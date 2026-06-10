@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Bot / 人机验证
 
 Bot / 人机验证用于在敏感路径前增加本地 JS challenge、captcha、行为评分和设备信号校验。Gateway 不在请求热路径调用第三方验证码服务。

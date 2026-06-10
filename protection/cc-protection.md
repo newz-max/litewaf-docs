@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # CC 防护
 
 CC 防护用于限制高频访问、登录爆破、API 调用滥用、404 扫描和攻击命中频率。当前规则以 `module=cc-protection`、`category=rate-limit` 的频率限制模型执行。
@@ -24,11 +28,17 @@ CC 防护用于限制高频访问、登录爆破、API 调用滥用、404 扫描
 
 ## 匹配范围
 
-“精确”（底层值 `exact`）要求请求 URI 与配置路径完全相同。`/api/login` 只匹配 `/api/login`，不匹配 `/api/login/`；Gateway 使用路径部分判断，不使用查询字符串参与路径匹配。
+### 精确
 
-“前缀”（底层值 `prefix`）按路径段边界匹配。`/admin` 匹配 `/admin` 和 `/admin/users`，不匹配 `/admin2`。配置 `/api/` 时会覆盖 `/api`、`/api/` 和 `/api/users`，适合多级 API 前缀。
+底层值：`exact`。请求 URI 必须与配置路径完全相同。`/api/login` 只匹配 `/api/login`，不匹配 `/api/login/`；Gateway 使用路径部分判断，不使用查询字符串参与路径匹配。
 
-“Glob”（底层值 `glob`）仅 CC 防护支持，用于受限路径通配。`*` 匹配单个路径段内任意字符，不跨 `/`；`?` 匹配单个非 `/` 字符；不支持正则、字符集或 `**`。例如 `/api/*` 匹配 `/api/login`，不匹配 `/api/v1/login`。需要覆盖多级路径时，在 Dashboard 选择“前缀”并填写 `/api/`。
+### 前缀
+
+底层值：`prefix`。按路径段边界匹配。`/admin` 匹配 `/admin` 和 `/admin/users`，不匹配 `/admin2`。配置 `/api/` 时会覆盖 `/api`、`/api/` 和 `/api/users`，适合多级 API 前缀。
+
+### Glob
+
+底层值：`glob`。仅 CC 防护支持，用于受限路径通配。`*` 匹配单个路径段内任意字符，不跨 `/`；`?` 匹配单个非 `/` 字符；不支持正则、字符集或 `**`。例如 `/api/*` 匹配 `/api/login`，不匹配 `/api/v1/login`。需要覆盖多级路径时，在 Dashboard 选择“前缀”并填写 `/api/`。
 
 方法为空表示全部 HTTP 方法。统计对象可选 `client_ip`、`client_ip_path`、`global`、`not_found_frequency`、`attack_frequency`、`session`、`device`。`session` 需要配置 Cookie 或 Header 名称，`device` 使用粗粒度请求信号派生计数键，不记录原始指纹。
 

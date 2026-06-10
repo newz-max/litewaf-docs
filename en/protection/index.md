@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # Protection Modules
 
 LiteWaf protection modules organize common WAF operations for dashboard users. The control plane stores module settings, while the Gateway enforces only the published version. Creating, editing, deleting, enabling, or disabling rules requires a publish before real traffic changes.

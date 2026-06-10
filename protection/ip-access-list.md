@@ -1,3 +1,7 @@
+---
+pageClass: protection-doc
+---
+
 # IP 黑白名单
 
 IP 黑白名单用于按来源 IP 或 CIDR 对请求做允许或阻断。它是独立模块，不与路径、Header、Host 访问控制混用。
