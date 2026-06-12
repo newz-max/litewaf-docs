@@ -30,6 +30,19 @@ Upload Protection supports "Exact" (published value `exact`) and "Prefix" (publi
 
 Extensions are evaluated from uploaded filename metadata. Max size is evaluated from request or upload metadata. When size metadata is not stable, observe logs before tightening rules.
 
+## Upload Size Limit Layers
+
+Upload size limits are not a single switch:
+
+| Layer | Name | Stage | Upload protection event |
+| --- | --- | --- | --- |
+| L0 | Upstream proxy request body limit | Before LiteWaf | No |
+| L1 | Gateway request body hard limit | OpenResty request body read | No |
+| L2 | Request body inspection read limit | WAF body inspection | Possible WAF event |
+| L3 | Upload protection size rule | Upload protection rules | Possible upload protection event |
+
+Dashboard "System Settings / Upload Limits" and publish preview show the LiteWaf-controlled L1/L2/L3 summary. Disabling Upload Protection does not disable the L1 gateway hard limit. The final accepted upload size can also be constrained by L0 upstream proxies and the origin service.
+
 ## Publish Activation
 
 Saving Upload Protection rules requires a publish. The Gateway evaluates Upload Protection after CC Protection and before Bot and Dynamic Protection.
@@ -43,6 +56,15 @@ Saving Upload Protection rules requires a publish. The Gateway evaluates Upload 
 ## Log Fields
 
 Filter by `module=upload-protection`. Check `rule_name`, `target`, `threshold`, `upload_metadata`, `action`, and `disposition`.
+
+If an upload endpoint returns 413, first check whether it hit the L1 gateway hard limit:
+
+```bash
+docker exec litewaf-gateway-1 /usr/local/openresty/bin/openresty -T | grep -n client_max_body_size
+docker logs litewaf-gateway-1 2>&1 | grep -i "too large body"
+```
+
+OpenResty-native 413 responses happen before WAF rules and normally do not appear in attack logs as `module=upload-protection`. If L1 is correct, continue checking CDN, load balancer, host reverse proxy, or other L0 upstream limits.
 
 ## False-Positive Risk
 

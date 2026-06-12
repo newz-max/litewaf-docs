@@ -30,6 +30,19 @@ pageClass: protection-doc
 
 扩展名按上传文件名元数据判断。最大大小按请求或上传元数据判断；无法稳定获得大小时，应先观察日志再收紧规则。
 
+## 上传大小限制层级
+
+上传大小限制不是单一开关：
+
+| 层级 | 名称 | 执行阶段 | 是否产生上传防护事件 |
+| --- | --- | --- | --- |
+| L0 | 前置代理请求体上限 | LiteWaf 之前 | 否 |
+| L1 | 网关请求体硬上限 | OpenResty 读取请求体阶段 | 否 |
+| L2 | 请求体检测读取上限 | WAF 请求体检测阶段 | 可产生 WAF 事件 |
+| L3 | 上传防护大小规则 | 上传防护规则阶段 | 可产生上传防护事件 |
+
+Dashboard“系统设置 / 上传限制”和发布预览会展示 LiteWaf 可控的 L1/L2/L3 摘要。关闭上传防护不等于放开 L1 网关硬上限，最终可上传大小还会受到 L0 前置代理和业务服务自身限制。
+
 ## 发布后生效
 
 保存上传防护规则后必须发布新版本。Gateway 在 CC 防护之后、Bot 和动态防护之前执行上传防护。
@@ -43,6 +56,15 @@ pageClass: protection-doc
 ## 日志排查字段
 
 按 `module=upload-protection` 查询。重点查看 `rule_name`、`target`、`threshold`、`upload_metadata`、`action`、`disposition`。
+
+如果上传接口返回 413，先检查是否命中 L1 网关硬上限：
+
+```bash
+docker exec litewaf-gateway-1 /usr/local/openresty/bin/openresty -T | grep -n client_max_body_size
+docker logs litewaf-gateway-1 2>&1 | grep -i "too large body"
+```
+
+OpenResty 原生 413 发生在 WAF 规则前，通常不会出现在 `module=upload-protection` 的攻击日志中。若 L1 配置无异常，再检查 CDN、负载均衡、宿主机反向代理等 L0 前置代理限制。
 
 ## 误伤和风险
 
